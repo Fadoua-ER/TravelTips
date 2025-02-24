@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Travel Tips</title>
+    <style>
+        body {
+            font-family: 'silver garden';
+            color: #5A4A42;
+            transition: margin-left 0.5s;
+        }
+
+        /* Navbar */
+        .navbar {
+            /* background-color: white; */
+            background-color: bisque;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Sidebar */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: bisque; /* Beige sable */
+            overflow-x: hidden;
+            padding-top: 80px;
+            transition: 0.5s;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+
+        .sidenav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #5A4A42;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: white;
+        }
+
+        /* Main Content */
+        #main {
+            transition: margin-left 0.5s;
+        }
+
+        /* Video background */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content over video */
+        .video-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.226);
+            z-index: 1;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 15px;
+            /* margin: 40px auto; */
+            /* max-width: 1100px; */
+            background: white;
+            border-radius: 10px;
+            /* box-shadow: 0px 4px 10px rgba(0,0,0,0.1); */
+        }
+
+        #conseils, #contact {
+            background-color: bisque;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .scroll-container {
+            padding: 10px;
+        }
+
+        /* Style de la galerie */
+        .gallery {
+            /* border: 1px solid #ccc; */
+            position: relative;
+            text-align: center;
+        }
+
+        .gallery:hover {
+            /* border: 1px solid #777; */
+        }
+
+        /* Images responsive */
+        .gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Overlay effect */
+        /* .overlay {
+            position: absolute;
+            bottom: 0;
+            background: rgba(255, 228, 196, 0.5); 
+            color: #5A4A42;
+            width: 100%;
+            transition: .5s ease;
+            opacity: 0;
+            font-size: 16px;
+            padding: 10px;
+            text-align: center;
+        } 
+
+        .gallery:hover .overlay {
+            opacity: 1;
+        }  */
+
+        /* Description en dessous de l'image */
+        .desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* Disposition responsive avec 4 colonnes */
+        .responsive {
+            padding: 4px;
+            float: right;
+            /* width: 24.99999%; */
+            width: 19.99999%;
+        }
+
+        /* Adjustments for smaller screens */
+        @media only screen and (max-width: 900px) {
+            .responsive {
+                width: 33.33333%; /* 3 columns */
+            }
+        }
+
+        /* Adaptation pour écrans plus petits */
+        @media only screen and (max-width: 700px) {
+            .responsive {
+                width: 49.99999%;
+                margin: 6px 0;
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .responsive {
+                width: 100%;
+            }
+        }
+
+        /* Correction des flottants */
+        /* .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        } */
+
+        
+        /* Centrer toute la section */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 200px; */
+            text-align: center;
+        }
+
+        /* Style de la boîte contact */
+        /* .contact-box {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px;
+        } */
+
+        /* Icône téléphone */
+        .contact-box i {
+            font-size: 40px;
+            color: #5A4A42;
+            margin-bottom: 10px;
+        }
+
+        /* Numéro de téléphone */
+        .phone-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Bouton Contact */
+        .contact-button {
+            background: #5A4A42;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #43372F;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: bisque;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        /* Icons */
+        .footer a { 
+            font-size: smaller;
+            text-decoration: none;
+            color: #5A4A42;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        footer i {
+            color: #5A4A42;
+        }
+
+        /* Hover Effect */
+        .footer a:hover {
+            color: #43372F;
+            transform: scale(1.2);
+        }
+
+        /* Copyright Text */
+        .footer p {
+            color: #5A4A42;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Large "Travel Tips" Title */
+        .footer h1 {
+            color: #5A4A42;
+            /* font-size: 24px; */
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+
+
+
+
+
+
+        .itinerary-category {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* 4 colonnes */
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #f0f8ff; /* Couleur pastel par défaut */
+            border-radius: 50%;
+            padding: 20px;
+            width: 120px;
+            height: 120px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .category-item a {
+            text-decoration: none;
+            color: #5A4A42;
+
+        }
+
+        .category-item:hover {
+            transform: scale(1.05);
+            background-color: #e0f7fa; /* Changement léger au survol */
+        }
+
+        /* Icônes FontAwesome */
+        .category-icon {
+            font-size: 40px;
+            color: #5A4A42;
+            margin-bottom: 10px;
+        }
+
+        /* Couleurs pastel pour chaque catégorie */
+        .hotel { background-color: #ffcccb; } /* Rose pastel */
+        .restaurant { background-color: #d0e7b7; } /* Vert pastel */
+        .commissariat { background-color: #b0d8ff; } /* Bleu pastel */
+        .ruelles { background-color: #fff1b3; } /* Jaune pastel */
+        .musee { background-color: #f5e1f7; } /* Lavande pastel */
+        .parc { background-color: #b8e5d1; } /* Menthe pastel */
+        .plage { background-color: #f1e4a6; } /* Pêche pastel */
+        .centre-commercial { background-color: #d0c1e3; } /* Lilas pastel */
+
+
+        /* Responsive Design for Small Screens */
+        @media only screen and (max-width: 1200px) {
+            .itinerary-category {
+                grid-template-columns: repeat(6, 1fr); /* 3 columns on medium screens */
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .itinerary-category {
+                grid-template-columns: repeat(4, 1fr); /* 2 columns on smaller screens */
+            }
+        }
+
+        @media only screen and (max-width: 500px) {
+            .itinerary-category {
+            grid-template-columns: 1fr; /* 1 column on very small screens */
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div id="mySidenav" class="sidenav">
+        <a href="#destinations">Destinations</a>
+        <a href="#conseils">Conseils</a>
+        <a href="#itineraires">Itinéraires</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main">
+        <!-- Navbar -->
+        <nav class="navbar fixed-top d-flex justify-content-between align-items-center px-3">
+            <button id="menu-toggle" class="btn text-dark fs-3"><span style="color: #5A4A42;">☰</span></button>
+            <h1 class="fw-bold">Travel Tips</h1>
+            <!-- <a href="#contact" class="btn btn-lg" style="color: bisque; background-color: #5A4A42;">Contact</a> -->
+            <a href="#contact" class="btn btn-lg" style="color: #5A4A42;"><i class="fas fa-phone-alt"></i></a>
+        </nav>
+
+        <!-- Video Background -->
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="morocco.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div>
+            <div class="video-content">
+                <h1 class="display-4 fw-bold">Welcome to Your Journey</h1>
+                <p class="lead">Explore Morocco with us</p>
+                <a href="#destinations" class="btn btn-lg" style="background-color: bisque; color: #5A4A42;">Start Exploring</a>
+            </div>
+        </div>
+
+        <!-- Sections -->
+        <div id="destinations" class="section">
+            <h2 class="text-center">Destinations </h2>
+            <p class="text-center">Découvrez les meilleures destinations pour votre prochain voyage.</p>
+            <div class="scroll-container">
+                <div class="responsive">
+                    <div class="gallery">
+                        <a target="_blank" href="casa.jpg">
+                            <img src="casa.jpg" alt="Casablanca">
+                        </a>
+                        <div class="overlay">Casablanca</div>
+                        <div class="desc">Une vue magnifique de Casablanca</div>
+                    </div>
+                </div>
+            
+                <div class="responsive">
+                    <div class="gallery">
+                        <a target="_blank" href="rabat.jpg">
+                            <img src="rabat.jpg" alt="Rabat">
+                        </a>
+                        <div class="overlay">Rabat</div>
+                        <div class="desc">Capitale du Maroc</div>
+                    </div>
+                </div>
+            
+                <div class="responsive">
+                    <div class="gallery">
+                        <a target="_blank" href="tanger.jpg">
+                            <img src="tanger.jpg" alt="Tanger">
+                        </a>
+                        <div class="overlay">Tanger</div>
+                        <div class="desc">Ville côtière du Nord</div>
+                    </div>
+                </div>
+            
+                <div class="responsive">
+                    <div class="gallery">
+                        <a target="_blank" href="marrakech.jpg">
+                            <img src="marrakech.jpg" alt="Marrakech">
+                        </a>
+                        <div class="overlay">Marrakech</div>
+                        <div class="desc">La ville rouge</div>
+                    </div>
+                </div>
+            
+                <div class="responsive">
+                    <div class="gallery">
+                        <a target="_blank" href="chefchaouen.jpg">
+                            <img src="chefchaouen.jpg" alt="Chefchaouen">
+                        </a>
+                        <div class="overlay">Chefchaouen</div>
+                        <div class="desc">La ville bleue</div>
+                    </div>
+                </div>
+            
+                <div class="clearfix"></div>
+            </div>
+            
+        </div>
+
+        <div id="conseils" class="section">
+            <h2 class="text-center">Conseils</h2>
+            <p class="text-center">Nos meilleures recommandations pour un voyage en toute sérénité.</p>
+        </div>
+
+        <div id="itineraires" class="section">
+            <h2 class="text-center">Itinéraires</h2>
+            <p class="text-center">Découvrez des itinéraires adaptés à chaque type de voyage.</p>
+            <div class="itinerary-category">
+                <div class="category-item hotel">
+                    <a href="hotel.html">
+                        <i class="fas fa-hotel category-icon"></i>
+                        <center>Hotel</center>
+                    </a>
+                </div>
+                <div class="category-item restaurant">
+                    <a href="restaurant.html">
+                        <i class="fas fa-utensils category-icon"></i>
+                        <center>Resto</center>
+                    </a>
+                </div>
+                <div class="category-item commissariat">
+                    <a href="commissariat.html">
+                        <i class="fas fa-shield-alt category-icon"></i>
+                        <center>Service</center>
+                    </a>
+                </div>
+                <div class="category-item ruelles">
+                    <a href="ruelles.html">
+                        <i class="fas fa-road category-icon"></i>
+                        <center>Route</center>
+                    </a>
+                </div>
+                <div class="category-item musee">
+                    <a href="musee.html">
+                        <i class="fas fa-landmark category-icon"></i>
+                        <center>Musée</center>
+                    </a>
+                </div>
+                <div class="category-item parc">
+                    <a href="parc.html">
+                        <i class="fas fa-tree category-icon"></i>
+                        <center>Parc</center>
+                    </a>
+                </div>
+                <div class="category-item plage">
+                    <a href="plage.html">
+                        <i class="fas fa-umbrella-beach category-icon"></i>
+                        <center>Plage</center>
+                    </a>
+                </div>
+                <div class="category-item centre-commercial">
+                    <a href="centre-commercial.html">
+                        <i class="fas fa-shopping-bag category-icon"></i>
+                        <center>Marché</center>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="section">
+            <h2 class="text-center">Contactez-nous</h2>
+            <p class="text-center">Appelez-nous pour toute information supplémentaire.</p>
+            <div class="contact-container">
+                <div class="contact-box">
+                    <i class="fas fa-phone-alt"></i> 
+                    <p class="phone-number">+212 x xx xx xx xx</p>
+                    <a href="tel:+" class="btn btn-lg" style="color: bisque; background-color: #5A4A42;">Contactez-nous</a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="quote" class="section">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                  <p>Explorez le Maroc en toute sérénité avec Travel Tips</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    L'expertise des passionnés du voyage <cite title="Source Title">- Travel Tips</cite>
+                </figcaption>
+            </figure>
+        </div>
+
+        <footer class="footer d-flex flex-column align-items-center px-3 py-3">
+            <h1 class="fw-bold mt-1">Travel Tips</h1>
+            <div class="d-flex justify-content-center gap-4">
+                <a href="mailto:@." class="text-dark fs-5"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+212" class="text-dark fs-5"><i class="fas fa-phone-alt"></i></a>
+                <a href="https://instagram.com/" class="text-dark fs-5" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="mt-2 mb-0">&copy; 2025 by Artify Studio</p>
+        </footer>
+        
+
+    </div>
+
+    <script>
+        // Sidebar toggle
+        let menuOpen = false;
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            let sidenav = document.getElementById("mySidenav");
+            let main = document.getElementById("main");
+
+            if (!menuOpen) {
+                sidenav.style.width = "250px";
+                main.style.marginLeft = "250px";
+            } else {
+                sidenav.style.width = "0px";
+                main.style.marginLeft = "0px";
+            }
+            menuOpen = !menuOpen;
+        });
+    </script>
+
+</body>
+</html>
