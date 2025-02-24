@@ -119,18 +119,28 @@
             /* border: 1px solid #ccc; */
             position: relative;
             text-align: center;
+            margin-right: 15px;
         }
 
         .gallery:hover {
             /* border: 1px solid #777; */
+            cursor: pointer;
         }
 
         /* Images responsive */
         .gallery img {
             width: 100%;
-            height: auto;
+            height: 300px; /* Set same height for all images */
+            /* height: auto; */
+            object-fit: cover; /* Makes images cover the space while maintaining aspect ratio */
             display: block;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
         }
+
+        .gallery img:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        } 
 
         /* Overlay effect */
         /* .overlay {
@@ -144,11 +154,26 @@
             font-size: 16px;
             padding: 10px;
             text-align: center;
-        } 
+        } */
 
         .gallery:hover .overlay {
             opacity: 1;
-        }  */
+        }  
+
+        
+        /* Hover overlay for images */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
 
         /* Description en dessous de l'image */
         .desc {
@@ -159,7 +184,7 @@
         /* Disposition responsive avec 4 colonnes */
         .responsive {
             padding: 4px;
-            float: right;
+            float: left;
             /* width: 24.99999%; */
             width: 19.99999%;
         }
@@ -400,53 +425,58 @@
             <h2 class="text-center">Destinations </h2>
             <p class="text-center">Découvrez les meilleures destinations pour votre prochain voyage.</p>
             <div class="scroll-container">
+                <!-- First image -->
                 <div class="responsive">
                     <div class="gallery">
                         <a target="_blank" href="casa.jpg">
-                            <img src="casa.jpg" alt="Casablanca">
+                        <img src="casa.jpg" alt="Casablanca">
                         </a>
-                        <div class="overlay">Casablanca</div>
-                        <div class="desc">Une vue magnifique de Casablanca</div>
+                        <div class="overlay">Casablanca - La vue magnifique</div>
+                        <!-- <div class="desc">Une vue magnifique de Casablanca</div> -->
                     </div>
                 </div>
-            
+                
+                <!-- Second image -->
                 <div class="responsive">
                     <div class="gallery">
                         <a target="_blank" href="rabat.jpg">
-                            <img src="rabat.jpg" alt="Rabat">
+                        <img src="rabat.jpg" alt="Rabat">
                         </a>
-                        <div class="overlay">Rabat</div>
-                        <div class="desc">Capitale du Maroc</div>
+                        <div class="overlay">Rabat - Capitale du Maroc</div>
+                        <!-- <div class="desc">Capitale du Maroc</div> -->
                     </div>
                 </div>
-            
+                
+                <!-- Third image -->
                 <div class="responsive">
                     <div class="gallery">
                         <a target="_blank" href="tanger.jpg">
-                            <img src="tanger.jpg" alt="Tanger">
+                        <img src="tanger.jpg" alt="Tanger">
                         </a>
-                        <div class="overlay">Tanger</div>
-                        <div class="desc">Ville côtière du Nord</div>
+                        <div class="overlay">Tanger - Ville côtière du Nord</div>
+                        <!-- <div class="desc">Ville côtière du Nord</div> -->
                     </div>
                 </div>
-            
+                
+                <!-- Fourth image -->
                 <div class="responsive">
                     <div class="gallery">
                         <a target="_blank" href="marrakech.jpg">
-                            <img src="marrakech.jpg" alt="Marrakech">
+                        <img src="marrakech.jpg" alt="Marrakech">
                         </a>
-                        <div class="overlay">Marrakech</div>
-                        <div class="desc">La ville rouge</div>
+                        <div class="overlay">Marrakech - La ville rouge</div>
+                        <!-- <div class="desc">La ville rouge</div> -->
                     </div>
                 </div>
-            
+                
+                <!-- Fifth image -->
                 <div class="responsive">
                     <div class="gallery">
                         <a target="_blank" href="chefchaouen.jpg">
-                            <img src="chefchaouen.jpg" alt="Chefchaouen">
+                        <img src="chefchaouen.jpg" alt="Chefchaouen">
                         </a>
-                        <div class="overlay">Chefchaouen</div>
-                        <div class="desc">La ville bleue</div>
+                        <div class="overlay">Chefchaouen - La ville bleue</div>
+                        <!-- <div class="desc">La ville bleue</div> -->
                     </div>
                 </div>
             
